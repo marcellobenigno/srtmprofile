@@ -1,0 +1,8 @@
+body {
+  padding-top: 50px;
+}
+
+#map {
+    min-height: calc(100vh - 50px);
+    padding: 0;
+}
