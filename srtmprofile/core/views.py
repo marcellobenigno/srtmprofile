@@ -11,7 +11,7 @@ def home(request):
 class RoadGeoJson(GeoJSONLayerView):
     model = Road
     simplify = 0.0001
-    properties = ('popup_content',)
+    properties = ('popup_content', 'jurisdiction')
 
 
 roads_geojson = RoadGeoJson.as_view()

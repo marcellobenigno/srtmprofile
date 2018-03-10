@@ -43,8 +43,15 @@ class Road(models.Model):
         return self.code
 
     @property
+    def jurisdiction(self):
+        if self.code[0:2] == 'BR':
+            return 'Federal'
+        return 'Estate'
+
+    @property
     def popup_content(self):
         popup = "<strong>Road: </strong>{}<br>".format(self.code)
+        popup += "<strong>Jurisdiction: </strong>{}<br>".format(self.jurisdiction)
         return popup
 
     class Meta:
