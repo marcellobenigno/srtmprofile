@@ -6,3 +6,9 @@ body {
     min-height: calc(100vh - 50px);
     padding: 0;
 }
+
+
+#map-detail {
+    min-height: calc(50vh - 50px);
+    padding: 0;
+}

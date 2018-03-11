@@ -15,6 +15,7 @@ var profileChart = new Chart(ctx, {
         }]
     },
     options: {
+        //maintainAspectRatio: false,
         scales: {
             yAxes: [{
                 ticks: {

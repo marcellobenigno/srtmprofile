@@ -17,6 +17,8 @@ class ProfileManager(models.Manager):
                  WHERE id = {}) foo)
               SELECT
                 points.id,
+                ST_X(geom) x,
+                ST_Y(geom) y,
                 length,
                 ST_Value(rast, geom) :: INTEGER elev
               FROM points, dem
@@ -50,13 +52,13 @@ class Road(models.Model):
     def jurisdiction(self):
         if self.code[0:2] == 'BR':
             return 'Federal'
-        return 'Estate'
+        return 'Estadual'
 
     @property
     def popup_content(self):
-        popup = "<strong>Road: </strong>{}<br>".format(self.code)
-        popup += "<strong>Jurisdiction: </strong>{}<br>".format(self.jurisdiction)
-        popup += "<a href='{}'>Details</a>".format(self.get_absolute_url())
+        popup = "<strong>Trecho: </strong>{}<br>".format(self.code)
+        popup += "<strong>Jurisdição: </strong>{}<br>".format(self.jurisdiction)
+        popup += "<a href='{}'>+ info</a>".format(self.get_absolute_url())
         return popup
 
     class Meta:

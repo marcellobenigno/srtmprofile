@@ -25,10 +25,23 @@ def detail(request, pk):
     distance = [int(obj.id * obj.length) for obj in profile]
     elevation = [obj.elev for obj in profile]
 
+    length = int(profile[20].length * 20) / 1000
+
+    init_x = profile[0].x
+    init_y = profile[0].y
+
+    end_x = profile[20].x
+    end_y = profile[20].y
+
     context = {
         'distance': json.dumps(distance),
         'elevation': json.dumps(elevation),
-        'road': road,
+        'obj': road,
+        'init_x': init_x,
+        'init_y': init_y,
+        'end_x': end_x,
+        'end_y': end_y,
+        'length': length,
     }
 
     return render(request, 'detail.html', context)
