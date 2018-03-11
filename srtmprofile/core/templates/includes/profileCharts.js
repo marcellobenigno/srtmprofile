@@ -9,7 +9,7 @@ var profileChart = new Chart(ctx, {
     data: {
         labels: distance,
         datasets: [{
-            label: 'Elevation',
+            label: 'Altitude (m)',
             data: elevation,
             borderWidth: 2,
         }]
