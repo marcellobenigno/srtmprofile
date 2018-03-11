@@ -1,4 +1,5 @@
 from django.contrib.gis.db import models
+from django.urls import reverse
 
 
 class ProfileManager(models.Manager):
@@ -42,6 +43,9 @@ class Road(models.Model):
     def __str__(self):
         return self.code
 
+    def get_absolute_url(self):
+        return reverse('core:detail', args=[str(self.id)])
+
     @property
     def jurisdiction(self):
         if self.code[0:2] == 'BR':
@@ -52,6 +56,7 @@ class Road(models.Model):
     def popup_content(self):
         popup = "<strong>Road: </strong>{}<br>".format(self.code)
         popup += "<strong>Jurisdiction: </strong>{}<br>".format(self.jurisdiction)
+        popup += "<a href='{}'>Details</a>".format(self.get_absolute_url())
         return popup
 
     class Meta:

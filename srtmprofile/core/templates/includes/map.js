@@ -60,17 +60,10 @@ $.getJSON(roads_geojson_dataurl, function (data) {
 
 var map = L.map('map', {
     center: [-7.09544, -36.97998],
-    zoom: 4,
+    zoom: 8,
     layers: [streets, roads]
 });
 
-// var corner1 = L.latLng(-8.2991, -38.7527);
-// var corner2 = L.latLng(-6.1003, -34.7958);
-// var bounds = L.latLngBounds(corner2, corner1);
-
-// console.log(bounds);
-
-// map.fitBounds(bounds);
 
 var baseLayers = {
     "Grayscale": grayscale,

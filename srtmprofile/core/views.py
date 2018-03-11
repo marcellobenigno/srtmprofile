@@ -1,7 +1,9 @@
-from django.shortcuts import render
+import json
+
+from django.shortcuts import render, get_object_or_404
 from djgeojson.views import GeoJSONLayerView
 
-from .models import Road
+from .models import DEM, Road
 
 
 def home(request):
@@ -17,25 +19,20 @@ class RoadGeoJson(GeoJSONLayerView):
 roads_geojson = RoadGeoJson.as_view()
 
 
-# def home(request):
+def detail(request, pk):
 
-#     profile = DEM.profile.get(road_pk=1)
+    road = get_object_or_404(Road, pk=pk)
 
-#     prof_dict = []
+    profile = DEM.profile.get(road_pk=pk)
 
-#     for obj in profile:
+    distance = [int(obj.id * obj.length) for obj in profile]
 
-#         d = {
-#             'id': obj.id,
-#             'dist': int(obj.id * obj.length),
-#             'elev': obj.elev,
-#         }
-#         prof_dict.append(d)
+    elevation = [obj.elev for obj in profile]
 
-#     print(prof_dict)
+    context = {
+        'distance': json.dumps(distance),
+        'elevation': json.dumps(elevation),
+        'road': road,
+    }
 
-#     context = {
-#         'profile': prof_dict,
-#     }
-
-#     return render(request, 'home.html', context)
+    return render(request, 'detail.html', context)

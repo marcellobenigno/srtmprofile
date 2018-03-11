@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block extras_assets %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+{% endblock extras_assets %}
+
+
+{% block content %}
+<h1>Road Profile {{ road }}</h1>
+
+<div class="row">
+    <div class="col-md-10">
+        <canvas id="chart"></canvas>
+    </div>
+
+</div>
+
+
+
+{% endblock content %}
+
+{% block extras_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.js"></script>
+
+<script>
+var ctx = $("#chart");
+var labels = [];
+var distance = JSON.parse('{{ distance|safe }}');
+var elevation = JSON.parse('{{ elevation|safe }}');
+
+
+var profileChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: distance,
+        datasets: [{
+            label: 'Elevation',
+            data: elevation,
+            borderWidth: 2,
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }],
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>
+{% endblock extras_js %}
+
+
