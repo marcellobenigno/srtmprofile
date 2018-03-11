@@ -20,13 +20,9 @@ roads_geojson = RoadGeoJson.as_view()
 
 
 def detail(request, pk):
-
     road = get_object_or_404(Road, pk=pk)
-
     profile = DEM.profile.get(road_pk=pk)
-
     distance = [int(obj.id * obj.length) for obj in profile]
-
     elevation = [obj.elev for obj in profile]
 
     context = {

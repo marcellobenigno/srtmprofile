@@ -6,14 +6,19 @@
 
 
 {% block content %}
-<h1>Road Profile {{ road }}</h1>
+<h1> {{ road }}</h1>
 
 <div class="row">
     <div class="col-md-10">
         <canvas id="chart"></canvas>
     </div>
-
 </div>
+<div class="row">
+    <div class="col-md-10">
+        <p><a href="{% url 'core:home' %}">Voltar</a></p>
+    </div>
+</div>
+
 
 
 
@@ -23,37 +28,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.js"></script>
 
 <script>
-var ctx = $("#chart");
-var labels = [];
-var distance = JSON.parse('{{ distance|safe }}');
-var elevation = JSON.parse('{{ elevation|safe }}');
+{% include 'includes/profileCharts.js' %}
 
-
-var profileChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: distance,
-        datasets: [{
-            label: 'Elevation',
-            data: elevation,
-            borderWidth: 2,
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }],
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        }
-    }
-});
 </script>
 {% endblock extras_js %}
 
