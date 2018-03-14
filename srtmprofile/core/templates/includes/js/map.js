@@ -2,31 +2,31 @@ function onEachFeature(feature, layer) {
     if (feature.properties && feature.properties.popup_content) {
         layer.bindPopup(
             feature.properties.popup_content
-        );
+            );
     }
 }
 
 function getColor(jurisdiction) {
     switch (jurisdiction) {
         case 'Federal':
-            return '#000';
-            break;
+        return '#000';
+        break;
         case 'Estadual':
-            return ' #994d00';
+        return ' #994d00';
         default:
-            return '#aaa';
+        return '#aaa';
     }
 }
 
 function getWeight(jurisdiction) {
     switch (jurisdiction) {
         case 'Federal':
-            return 4;
-            break;
+        return 4;
+        break;
         case 'Estadual':
-            return 2;
+        return 2;
         default:
-            return 1;
+        return 1;
     }
 }
 
@@ -38,12 +38,12 @@ function roadStyle(feature) {
 }
 
 var mbAttr = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-        '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-        'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-    mbUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+mbUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
 
 var grayscale   = L.tileLayer(mbUrl, {id: 'mapbox.light', attribution: mbAttr}),
-    streets  = L.tileLayer(mbUrl, {id: 'mapbox.streets',   attribution: mbAttr});
+streets  = L.tileLayer(mbUrl, {id: 'mapbox.streets',   attribution: mbAttr});
 
 
 var roads = L.geoJson([], {

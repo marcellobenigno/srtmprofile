@@ -57,7 +57,8 @@ class Road(models.Model):
     @property
     def popup_content(self):
         popup = "<strong>Trecho: </strong>{}<br>".format(self.code)
-        popup += "<strong>Jurisdição: </strong>{}<br>".format(self.jurisdiction)
+        popup += "<strong>Jurisdição: </strong>{}<br>".format(
+            self.jurisdiction)
         popup += "<a href='{}'>+ info</a>".format(self.get_absolute_url())
         return popup
 
