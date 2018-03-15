@@ -11,15 +11,14 @@ de perfis topográficos de rodovias, através de dados de relevo [SRTM][1].
 
 ## Como Desenvolver?
 
-* Clone o Repositório
-* Ative o virtualenv Python ( versão >= 3.5)
-* Instale as dependências
-* Configure a instância com o .env
-* Crie um banco de dados espacial, utilizando o PostgreSQL e o PostGIS
-* Renomeie o .env.sample como .env e ajuste os parâmetros de conexão
-* Execute as migrações no banco de dados
-* Baixe os arquivos sql
-* carregue os dados no banco
+* Clone o Repositório;
+* Ative o virtualenv Python (>= 3.5);
+* Instale as dependências;
+* Crie um banco de dados espacial, utilizando o PostgreSQL e o PostGIS;
+* Renomeie o `.env.sample` como `.env` e ajuste os parâmetros de conexão;
+* Execute as migrações no banco de dados;
+* Baixe os arquivos sql (roads.sql e dem.sql);
+* Carregue os dados no banco.
 
 ```
 git clone git@github.com:marcellobenigno/srtmprofile.git
@@ -38,6 +37,8 @@ wget https://www.dropbox.com/s/a8q7e4dp5uv18c7/dem.sql
 wget https://www.dropbox.com/s/eutiuk5w173ikz4/roads.sql
 psql -f dem.sql -d srtmprofile
 psql -f roads.sql -d srtmprofile
+python manage.py runserver
+
 ```
 
 [1]:https://www2.jpl.nasa.gov/srtm/
